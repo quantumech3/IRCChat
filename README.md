@@ -1,3 +1,16 @@
 # IRCChat
-Basic ass irc chat server
-# Property of Scott Burgert and Kevin Walsh
+### Basic ass irc chat server
+
+---
+
+&nbsp;
+
+**Changelogs:**
+
+> Initial Commit:
+>> Init
+
+&nbsp;
+
+> Second Commit:
+>> Beautified README.md 
