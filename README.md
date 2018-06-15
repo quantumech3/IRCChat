@@ -1,3 +1,3 @@
 # IRCChat
 Basic ass irc chat server
-####tsiodhfosdipfdhsfopsidfhsdopifhsdf
+# Property of Scott Burgert and Kevin Walsh
