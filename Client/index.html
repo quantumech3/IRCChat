@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <title>IRC Chat</title>
     <script src = "socket.io/socket.io.js"></script>
-    <script src="Requests.js"></script>
+    <script src="Backend.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="Frontend.js"></script>
 </head>
 <body>
     <!--Backend stuff-->
     <script>
         const server = io.connect("http://localhost:80");
         TextServer(server, "Hello world");
+    </script>
+
+    <!--Gui Stuff-->
+    <script>
+
     </script>
 </body>
 </html>
