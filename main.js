@@ -3,14 +3,23 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-
-app.use(express.static(__dirname));
-app.get('/', function(req, res, next)
-{
-    res.sendFile('Client/index.html');
-});//app.get();
+const serverLogic = require('./events');
 //------------------
 
-console.log(n);
+app.use(express.static(__dirname + "/Client/"));
+app.get('/', function(req, res, next)
+{
+    res.sendFile('index.html');
+});//app.get();
+
+io.on("connection", function(client)
+{
+    //Do all connection logic
+    serverLogic.OnConnection(client);
+
+    //Assign all events
+    client.on("MessageSent", serverLogic.OnMessageSent);
+    //-----------------
+});//OnConnection()
 
 server.listen(80);

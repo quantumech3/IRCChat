@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>IRC Chat</title>
+    <script src = "socket.io/socket.io.js"></script>
+    <script src="Requests.js"></script>
 </head>
 <body>
-
+    <!--Backend stuff-->
+    <script>
+        const server = io.connect("http://localhost:80");
+        TextServer(server, "Hello world");
+    </script>
 </body>
 </html>
