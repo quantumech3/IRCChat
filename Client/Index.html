@@ -9,15 +9,23 @@
     <script src="Frontend.js"></script>
 </head>
 <body>
-    <!--Backend stuff-->
+    <!--Ugly backend stuff-->
     <script>
+        //Connect to chat server
         const server = io.connect("http://localhost:80");
-        TextServer(server, "Hello world");
     </script>
 
-    <!--Gui Stuff-->
+    <!--Beautiful frontend stuff-->
     <script>
-
+        //TODO: replace this with text box and send button
+        document.addEventListener("keypress", function(key)
+        {
+           if(key.key == "m")
+           {
+               let text = prompt("Enter message here", "blahblah");
+               TextServer(server, text);
+           }
+        })
     </script>
 </body>
 </html>
