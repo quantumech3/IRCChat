@@ -3,14 +3,15 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const serverLogic = require('./events');
-//------------------
-
+const serverLogic = require('./Events');
 app.use(express.static(__dirname + "/Client/"));
 app.get('/', function(req, res, next)
 {
     res.sendFile('index.html');
 });//app.get();
+//------------------
+
+
 
 io.on("connection", function(client)
 {
