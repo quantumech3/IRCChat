@@ -14,3 +14,4 @@ exports.EnumNamesToString = function(values)
 {
     return EnumValues.EnumValues.getNames(values).toString().substr(0, values.toString().length-2);
 };
+exports.ExtractIpFromSocket

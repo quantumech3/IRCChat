@@ -18,7 +18,7 @@ module.exports = class Database
         console.log("Executing SQL command: " + cmd);
     }
 
-    Insert(tableName, values, callback = function(result){})
+    InsertNewRow(tableName, values, callback = function(result){})
     {
 
         //INSERT INTO tablename(column1,column2,etc) VALUES(value1, value2, etc);
@@ -34,7 +34,19 @@ module.exports = class Database
             callback(value);
         });
         //-----------------------------
-    }//Insert()
+    }//InsertNewRow()
+
+    GetFromRow(table, row, callback = function(result){}, column = "*")
+    {
+        //SELECT columnName FROM tablename where Y = rowNum;
+        let cmd = "SELECT "+column+" FROM "+table+" WHERE y = "+row+";";
+        this.LogCmd(cmd);
+        this.connection.query(cmd, function(err, result)
+        {
+            if(err) throw err;
+            callback(result);
+        });
+    }//GetFromRow()
 
     ClearTable(tableName, callback = function(result){}){
         //TRUNCATE tablename;
@@ -51,10 +63,9 @@ module.exports = class Database
         //Log command
         this.LogCmd(command);
 
-        return returnValue;
     }
 
-}
+}//class Database
 
 
 
