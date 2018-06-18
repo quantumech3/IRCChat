@@ -1,3 +1,5 @@
+let messages = [];
+
 //Setup server------
 const express = require('express');
 const app = express();
@@ -11,8 +13,6 @@ app.get('/', function(req, res, next)
 });//app.get();
 //------------------
 
-
-
 io.on("connection", function(client)
 {
     //Do all connection logic
@@ -23,4 +23,4 @@ io.on("connection", function(client)
     //-----------------
 });//OnConnection()
 
-server.listen(80);
+server.listen(25565);

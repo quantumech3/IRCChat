@@ -12,7 +12,8 @@
     <!--Ugly backend stuff-->
     <script>
         //Connect to chat server
-        const server = io.connect("http://localhost:80");
+        //Todo: Make the ip the client connects to be able to be set to anything
+        const server = io.connect("http://24.185.152.102:25565", {reconnection: true});
     </script>
 
     <!--Beautiful frontend stuff-->
