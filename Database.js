@@ -65,6 +65,19 @@ module.exports = class Database
 
     }
 
+    ExistsInColumn(tableName, columnValues, callback = function(result){})
+    {
+        //SELECT EXISTS(SELECT columnname FROM tablename WHERE columnname = value) AS exists
+        let cmd = "SELECT EXISTS(SELECT " + General.EnumNamesToString(columnValues) + " FROM " + tableName + " WHERE " + General.EnumNamesToString(columnValues) + "=" + General.EnumValuesToString(columnValues) + ") as n;";
+        this.LogCmd(cmd);
+
+        this.connection.query(cmd, function(err, result)
+        {
+            if(err) throw err;
+            callback(result[0].n);
+        });
+    }
+
 }//class Database
 
 

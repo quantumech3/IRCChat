@@ -14,4 +14,10 @@ exports.EnumNamesToString = function(values)
 {
     return EnumValues.EnumValues.getNames(values).toString().substr(0, values.toString().length-2);
 };
-exports.ExtractIpFromSocket
+exports.ExtractIpFromClient = function(client)
+{
+    let ip = client.handshake.address;
+    ip = ip.toString().substr(7,ip.toString().length-1);
+
+    return ip;
+}
