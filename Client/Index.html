@@ -15,6 +15,20 @@
         //Connect to chat server
         //Todo: Make the ip the client connects to be able to be set to anything
         const server = io.connect("http://24.185.152.102:25565", {reconnection: true});
+
+        server.on("connect", function()
+        {
+            server.on("UpdateMessages", function(messages)
+            {
+                //Log every message into console
+               messages.Messages.forEach(function(value)
+               {
+                   console.log(messages);
+               });
+               //-------------------------------
+
+            });//OnUpdateMessages()
+        });//OnConnect()
     </script>
 
     <!--Beautiful frontend stuff-->

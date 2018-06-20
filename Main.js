@@ -18,10 +18,14 @@ io.on("connection", function(client)
     //Do all connection logic
     serverLogic.OnConnection(client);
 
-    client.on("disconnect", function(){serverLogic.OnDisconnect(client);});
+
     //Assign all events
+    client.on("disconnect", function(){serverLogic.OnDisconnect(client);});
     client.on("MessageSent", serverLogic.OnMessageSent);
     //-----------------
 });//OnConnection()
+
+//Set frequency of Client updates
+setInterval(serverLogic.UpdateClientMessages, 1000);
 
 server.listen(25565);
