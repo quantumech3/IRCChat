@@ -14,10 +14,18 @@ exports.EnumNamesToString = function(values)
 {
     return EnumValues.EnumValues.getNames(values).toString().substr(0, values.toString().length-2);
 };
-exports.ExtractIpFromClient = function(client)
+exports.IpFromClient = function(client)
 {
     let ip = client.handshake.address;
     ip = ip.toString().substr(7,ip.toString().length-1);
 
     return ip;
+}
+
+exports.RandString = function(length)
+{
+    let output = "";
+    for(i = 0; i < length; i++) output += String.fromCharCode(Math.round(Math.random() * 255));
+
+    return output;
 }

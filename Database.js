@@ -78,6 +78,36 @@ module.exports = class Database
         });
     }
 
+    GetTable(tableName, callback = function(result){})
+    {
+
+        //SELECT * FROM tableName
+        let cmd = "SELECT *  FROM "+tableName+";";
+
+        this.LogCmd(cmd);
+        this.connection.query(cmd, function(err, result)
+        {
+           if(err) throw err;
+           callback(result);
+        });
+
+    };//GetTable()
+
+    GetOnSameRow(tableName, value, columnName, callback = function(result){})
+    {
+        //SELECT columnName FROM tableName WHERE value.column = value;
+        let cmd = "SELECT " + columnName + " FROM " + tableName + " WHERE " + General.EnumNamesToString(value) + " = " + General.EnumValuesToString(value);
+
+        this.LogCmd(cmd);
+
+        this.connection.query(cmd, function(err, result)
+        {
+            if(err) throw err;
+            callback(result);
+        });
+
+    };//GetOnSameRow()
+
 }//class Database
 
 

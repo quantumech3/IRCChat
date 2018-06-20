@@ -18,6 +18,7 @@ io.on("connection", function(client)
     //Do all connection logic
     serverLogic.OnConnection(client);
 
+    client.on("disconnect", function(){serverLogic.OnDisconnect(client);});
     //Assign all events
     client.on("MessageSent", serverLogic.OnMessageSent);
     //-----------------
