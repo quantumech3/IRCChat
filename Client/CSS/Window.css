@@ -1,7 +1,3 @@
-#Window{
-    position: absolute;
-    left: 20%;
-    width: 60%;
-    height: 100%;
-    background-color: red;
+body{
+    margin: 0 20%;
 }
