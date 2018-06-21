@@ -1,0 +1,48 @@
+#Bubble.Main{
+    border: 2px black solid;
+    display: table;
+    width: 200px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: white;
+}
+.ArrowRight{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid black;
+    border-radius: 0px;
+
+    display: table-row;
+    position: relative;
+    top: 100%;
+    left: 100%;
+    transform: translate(-50px);
+}
+.ArrowLeft{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid black;
+    border-radius: 0px;
+    display: table-cell;
+    position: relative;
+    top: 100%;
+    left: -50%;
+    transform: translate(50px);
+}
+.IDText{
+    display: table-cell;
+    word-wrap: break-word;
+    text-align: center;
+    position: relative;
+    left: 50%;
+}
+.MessageText{
+    display: table-cell;
+    horiz-align: center;
+    position: relative;
+    top: 50%;
+}
