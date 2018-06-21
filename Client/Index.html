@@ -12,17 +12,8 @@
 </head>
 <body>
 
-    <!--Left chat bubble-->
-    <div class="ChatBubble" style="float: left;">
-        <p class="id" align="left" id="ID">ID: 123344565893759</p>
-        <p class="Message" id="Content">Meuiahgfaiufgiaugfiafguaifgsaifgasuifasuifagsfuasgfasuifgasfugasfuigagui</p>
-    </div>
 
-    <!--Right chat bubble-->
-    <div class="ChatBubble" style="float: right;">
-
-        <p class="Message" id="Content" style="background-color: greenyellow;">Meuiahgfaiufgiaugfiafguaifgsaifgasuifasuifagsfuasgfasuifgasfugasfuigagui</p>
-        <p class="id" align="left" id="ID">ID: 123344565893759</p>
+    <div id="Messages">
     </div>
 
     <!--Ugly backend stuff-->
@@ -50,7 +41,8 @@
                let text = prompt("Enter message here", "blahblah");
                TextServer(server, text);
            }
-        })
+        });
+
     </script>
 </body>
 </html>
