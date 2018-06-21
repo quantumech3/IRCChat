@@ -5,9 +5,9 @@ const General = require('./General');
 
 module.exports = class Database
 {
-
     constructor(host, userName, password, databaseName)
     {
+        this.debugEnabled = true;
         this.connection = database.createConnection({host: host, user: userName, password: password, database: databaseName});
         this.connection.connect();
         console.log("Connected to database '" + databaseName + "' on host '" + host + "'");
@@ -15,7 +15,7 @@ module.exports = class Database
 
     LogCmd(cmd)
     {
-        console.log("Executing SQL command: " + cmd);
+        if(this.debugEnabled) console.log("Executing SQL command: " + cmd);
     }
 
     InsertNewRow(tableName, values, callback = function(result){})

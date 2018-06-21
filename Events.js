@@ -1,6 +1,7 @@
 const Database = require('./Database');
 const General = require('./General');
 let database = new Database('localhost', 'root', '', 'irc');
+database.debugEnabled = false;
 
 let messages = [];
 let users = [];
@@ -23,6 +24,7 @@ exports.OnConnection = function(client)
     //VAR messages = Get * from database.messages
     database.GetTable("messages", function(result)
     {
+        messages = [];
         //Add all previous messages to var 'messages'
         result.forEach(function(value, index)
         {
@@ -43,6 +45,7 @@ exports.OnDisconnect = function(client)
     {
         if(users[i] == client) users = users.splice(i,i);
     }
+    console.log("Removed user");
 };
 
 exports.OnMessageSent = function(message)
@@ -50,14 +53,21 @@ exports.OnMessageSent = function(message)
     //VAR idOfMessenger = id next to ip of message from table 'users'
     database.GetOnSameRow("users", {ip: message.Ip}, "id", function(result)
     {
-        if(result[0])
+        console.log("Recieved text");
+        if(!result[0])
         {
+            database.InsertNewRow("users", {ip: message.Ip, id: General.RandString(10)});
+            exports.OnMessageSent(message);
+        }
+        else{
             //Add new row(idOfMessenger, message, text) to 'messages' table
-            database.InsertNewRow("messages", {id: result[0].id, text: message.Text});
+            database.InsertNewRow("messages", {id: result[0].id.toString(), text: message.Text});
             //Add latest message and id to messages
             messages.push({Text: message.Text, Id: result[0].id});
-            console.log("Recieved text");
-        }//Null guard for result[0].id
+            console.log("Added text");
+        }
+
+
 
     });
 
@@ -72,7 +82,7 @@ exports.UpdateClientMessages = function()
         {
             if(result[0])
             {
-                user.emit("UpdateMessages", {Messages: messages, SelfID: result[0].id});
+                user.emit("UpdateMessages", {Messages: messages, SelfID: result[0].id.toString()});
             }//Null guard for result[0].id
 
         });

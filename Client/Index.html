@@ -24,8 +24,22 @@
 
         server.on("connect", function()
         {
-            server.on("UpdateMessages", function(messages)
+            server.on("UpdateMessages", function(data)
             {
+                DeleteAllChatBubbles();
+
+                //ITERATE data.Messages WITH message:
+                data.Messages.forEach(function(message){
+
+                    if(message.Id == data.SelfID)
+                    {
+                        AddChatBubble(true, message.Text);
+                    }
+                    else{
+                        AddChatBubble(false, message.Text, message.Id);
+                    }
+
+                });//ForEach in data
 
             });//OnUpdateMessages()
         });//OnConnect()

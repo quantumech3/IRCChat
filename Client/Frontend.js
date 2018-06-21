@@ -22,3 +22,7 @@ let AddChatBubble = function(isSelf, content, id = "You")
         document.getElementById("Messages").appendChild(chatBubble);
     }
 };
+let DeleteAllChatBubbles = function()
+{
+  document.getElementById("Messages").innerHTML = "";
+};
