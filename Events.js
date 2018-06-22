@@ -58,8 +58,8 @@ exports.OnMessageSent = function (message) {
                     //Add latest message and id to messages
                     messages.push({Text: message.Text, Id: result[0].id});
                     console.log("Added text from user: " + result[0].id);
-                });
-            });
+                });//GetOnSameRow()
+            });//Nullguard for result[0]
 
         }
         else {

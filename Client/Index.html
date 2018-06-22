@@ -21,6 +21,8 @@
         //Connect to chat server
         //Todo: Make the ip the client connects to be able to be set to anything
         const server = io.connect("http://24.185.152.102:25565", {reconnection: true});
+        let _pageHeight = 0;
+
 
         server.on("connect", function()
         {
@@ -37,7 +39,16 @@
                         AddChatBubble(false, message.Text, message.Id);
                     }
 
-                });//ForEach in data
+                });//ForEach in data (Print chat bubbles)
+
+
+                //IF(current scrollY >= _pageHeight): Scroll to bottom of page
+                if(window.scrollY + window.innerHeight == _pageHeight)
+                {
+                    window.scrollTo(0, document.documentElement.scrollHeight);
+                }
+                //_pageHeight = current page height
+                _pageHeight = document.documentElement.scrollHeight;
 
             });//OnUpdateMessages()
         });//OnConnect()
