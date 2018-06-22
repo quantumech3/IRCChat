@@ -18,6 +18,8 @@
     </div>
     <div class="MessageBar" align="center">
         <input type="text" id="TextBox">
+
+        <!--OnButtonPressed: Text server text from textbox-->
         <button class="SendButton" onclick="TextServer(server, $('#TextBox').val()); $('#TextBox').val('');">Send Message</button>
 
     </div>
@@ -68,13 +70,12 @@
 
     <!--Beautiful frontend stuff-->
     <script>
-        //TODO: Make it so when you press 'enter', it gets the text from textbox and sends it
         document.addEventListener("keypress", function(key)
         {
-           if(key.key == "m")
+           if(key.key == "Enter")
            {
-               let text = prompt("Enter message here", "blahblah");
-               TextServer(server, text);
+               TextServer(server, $('#TextBox').val());
+               $('#TextBox').val('');
            }
         });
 

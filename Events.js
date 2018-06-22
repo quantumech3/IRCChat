@@ -47,8 +47,10 @@ exports.OnDisconnect = function (client) {
 
 exports.OnMessageSent = function (message) {
     console.log("OnMessageSent event is being called");
+
     //VAR idOfMessenger = id next to ip of message from table 'users'
     database.GetOnSameRow("users", {ip: message.Ip}, "id", function (result) {
+
         console.log("Recieved text");
         if (!result[0]) {
             database.InsertNewRow("users", {ip: message.Ip, id: General.RandString(10)}, function(result){
@@ -71,7 +73,7 @@ exports.OnMessageSent = function (message) {
         }
 
 
-    });
+    });//GetOnSameRow()
 
 };
 

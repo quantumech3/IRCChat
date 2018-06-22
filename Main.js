@@ -4,7 +4,7 @@ let messages = [];
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {'pingInterval': 10000, 'pingTimeout': 100000});
 const serverLogic = require('./Events');
 app.use(express.static(__dirname + "/Client/"));
 app.get('/', function(req, res, next)
