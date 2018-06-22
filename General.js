@@ -25,7 +25,7 @@ exports.IpFromClient = function(client)
 exports.RandString = function(length)
 {
     let output = "";
-    for(i = 0; i < length; i++) output += String.fromCharCode(Math.round(Math.random() * 255));
+    for(i = 0; i < length; i++) output += String.fromCharCode(Math.round(Math.random() * 128)+127);
 
     return output;
 }

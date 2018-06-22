@@ -1,9 +1,15 @@
+//This is set by the IpRecieve event
+let selfIP = "";
+
+let OnIpRecieve = function(ip)
+{
+    console.log("OnIpRecieve event called and got result: " + ip);
+    selfIP = ip;
+};
+
 let GetIpOfSelf = function(callback = function(result){})
 {
-    $.getJSON('https://json.geoiplookup.io/api?callback=?', function(data)
-    {
-        callback(data.ip);
-    });
+    callback(selfIP);
 }//GetIpOfSelf()
 
 let TextServer = function(server, text)

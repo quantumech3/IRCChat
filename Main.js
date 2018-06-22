@@ -22,6 +22,7 @@ io.on("connection", function(client)
     //Assign all events
     client.on("disconnect", function(){serverLogic.OnDisconnect(client);});
     client.on("MessageSent", serverLogic.OnMessageSent);
+    client.on("IpRequest", function(){serverLogic.OnIpRequest(client);});
     //-----------------
 });//OnConnection()
 

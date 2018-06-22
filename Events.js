@@ -3,12 +3,10 @@ const General = require('./General');
 let database = new Database('localhost', 'root', '', 'irc');
 database.debugEnabled = false;
 
-
 let messages = [];
 let users = [];
 
 exports.OnConnection = function (client) {
-
 
     //IF(ip does not exist in database under ips)
     database.ExistsInColumn("users", {ip: General.IpFromClient(client)}, function (result) {
@@ -89,4 +87,11 @@ exports.UpdateClientMessages = function () {
 
     });
 
-};//UpdateClientMessages()
+};//UpdateClientMessages()'
+
+exports.OnIpRequest = function(client)
+{
+    let ip = General.IpFromClient(client);
+    console.log("IpRequested by: " + ip);
+    client.emit("IpRecieve", ip);
+};
