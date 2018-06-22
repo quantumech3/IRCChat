@@ -1,0 +1,16 @@
+.MessageBar{
+    background-color: aquamarine;
+    height: 5%;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    position: fixed;
+    bottom: 0%;
+    display: table;
+    transform: translate(-20%, 0);
+}
+.MessageBar.SendButton{
+    display: table-cell;
+    vertical-align: center;
+    horiz-align: right;
+}

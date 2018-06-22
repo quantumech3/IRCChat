@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>IRC Chat</title>
     <script src = "socket.io/socket.io.js"></script>
-    <link rel="stylesheet" type="text/css" href="CSS/Chat%20Bubble.css">
+    <link rel="stylesheet" type="text/css" href="CSS/ChatBubble.css">
     <link rel="stylesheet" type="text/css" href="CSS/Window.css">
+    <link rel="stylesheet" type="text/css" href="CSS/MessageBar.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="Backend.js"></script>
     <script src="Frontend.js"></script>
@@ -15,6 +16,13 @@
 
     <div id="Messages">
     </div>
+    <div class="MessageBar" align="center">
+        <input type="text" id="TextBox">
+        <button class="SendButton" onclick="TextServer(server, $('#TextBox').val()); $('#TextBox').val('');">Send Message</button>
+
+    </div>
+
+    <div id="SpaceFiller" style="padding: 100px 40%; float: bottom; clear: bottom; display: inline-block;"></div>
 
     <!--Ugly backend stuff-->
     <script>
@@ -26,6 +34,8 @@
 
         server.on("connect", function()
         {
+            let hasInitallyLoaded = false;
+
             server.on("UpdateMessages", function(data)
             {
                 DeleteAllChatBubbles();
@@ -41,6 +51,8 @@
 
                 });//ForEach in data (Print chat bubbles)
 
+                //Scroll to bottom of page when page is first loaded
+                if(!hasInitallyLoaded){window.scrollTo(0, document.documentElement.scrollHeight); hasInitallyLoaded = true};
 
                 //IF(current scrollY >= _pageHeight): Scroll to bottom of page
                 if(window.scrollY + window.innerHeight == _pageHeight)
@@ -56,7 +68,7 @@
 
     <!--Beautiful frontend stuff-->
     <script>
-        //TODO: replace this with text box and send button
+        //TODO: Make it so when you press 'enter', it gets the text from textbox and sends it
         document.addEventListener("keypress", function(key)
         {
            if(key.key == "m")
