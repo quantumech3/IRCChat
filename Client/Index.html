@@ -30,9 +30,11 @@
     <script>
 
         //Connect to chat server
-        //Todo: Make the ip the client connects to be able to be set to anything
         const server = io.connect("http://24.185.152.102:25565", {reconnection: true});
+        //----------------------
+
         let _pageHeight = 0;
+
 
         server.on("connect", function()
         {
@@ -77,8 +79,13 @@
         {
            if(key.key == "Enter")
            {
-               TextServer(server, $('#TextBox').val());
-               $('#TextBox').val('');
+               let text = $('#TextBox').val();
+               if(text != ""){
+                   TextServer(server, text);
+                   $('#TextBox').val('');
+               }
+               else alert("Error: Nothing was put into text box");
+
            }
         });
 

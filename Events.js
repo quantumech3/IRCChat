@@ -1,7 +1,7 @@
 const Database = require('./Database');
 const General = require('./General');
 let database = new Database('localhost', 'root', '', 'irc');
-database.debugEnabled = false;
+database.debugEnabled = true;
 
 let messages = [];
 let users = [];
@@ -56,7 +56,12 @@ exports.OnMessageSent = function (message) {
                     //Add new row(idOfMessenger, message, text) to 'messages' table
                     database.InsertNewRow("messages", {id: result[0].id.toString(), text: message.Text});
                     //Add latest message and id to messages
-                    messages.push({Text: message.Text, Id: result[0].id});
+                    let currentText = message.Text;
+                    for(i = 0; i < currentText.length; i+=1)
+                    {
+                        if(currentText[i] == '"') currentText = currentText.slice(i,i);
+                    }
+                    messages.push({Text: currentText, Id: result[0].id});
                     console.log("Added text from user: " + result[0].id);
                 });//GetOnSameRow()
             });//Nullguard for result[0]
@@ -66,7 +71,12 @@ exports.OnMessageSent = function (message) {
             //Add new row(idOfMessenger, message, text) to 'messages' table
             database.InsertNewRow("messages", {id: result[0].id.toString(), text: message.Text});
             //Add latest message and id to messages
-            messages.push({Text: message.Text, Id: result[0].id});
+            let currentText = message.Text;
+            for(i = 0; i < currentText.length; i+=1)
+            {
+                if(currentText[i] == '"') currentText = currentText.slice(i,i);
+            }
+            messages.push({Text: currentText, Id: result[0].id});
             console.log(result[0].id);
         }
 

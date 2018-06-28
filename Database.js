@@ -8,7 +8,7 @@ module.exports = class Database
     constructor(host, userName, password, databaseName)
     {
         this.debugEnabled = true;
-        this.connection = database.createConnection({host: host, user: userName, password: password, database: databaseName});
+        this.connection = database.createConnection({host: host, user: userName, password: password, database: databaseName, charset: 'utf8mb4'});
         this.connection.connect();
         console.log("Connected to database '" + databaseName + "' on host '" + host + "'");
     }
@@ -22,7 +22,8 @@ module.exports = class Database
     {
 
         //INSERT INTO tablename(column1,column2,etc) VALUES(value1, value2, etc);
-        let command = "INSERT INTO " + tableName + "(" + General.EnumNamesToString(values) + ")" + " VALUES(" + General.EnumValuesToString(values) + ");";
+        let enumValueStr = General.EnumValuesToString(values);
+        let command = "INSERT INTO " + tableName + "(" + General.EnumNamesToString(values) + ")" + " VALUES(" + enumValueStr + ");";
 
         //Log the command
         this.LogCmd(command);

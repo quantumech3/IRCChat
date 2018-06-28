@@ -4,7 +4,18 @@ exports.EnumValuesToString = function(values)
 {
     let output = "";
     EnumValues.EnumValues.getValues(values).forEach(function(value, index){
-        if(typeof value == "string"){ output += '"'; output += value.toString(); output += '"';}
+
+
+
+        if(typeof value == "string")
+        {
+            //Get rid of all double quotes so sql doesnt crash from invalid syntax
+            for(i = 0; i < value.length; i+=1)
+            {
+                if(value[i] == '"') value = value.slice(i,i);
+            }
+            output += '"'; output += value.toString(); output += '"';
+        }
         else output += value;
         if(index < EnumValues.EnumValues.getValues(values).length-1) output += ",";
     });
