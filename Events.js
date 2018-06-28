@@ -1,7 +1,7 @@
 const Database = require('./Database');
 const General = require('./General');
 let database = new Database('localhost', 'root', '', 'irc');
-database.debugEnabled = true;
+database.debugEnabled = false;
 
 let messages = [];
 let users = [];
