@@ -1,5 +1,5 @@
 # IRCChat
-### Basic ass irc chat server
+### One of my very first projects. 
 
 ---
 
